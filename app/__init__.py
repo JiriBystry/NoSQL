@@ -15,9 +15,15 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    MONGO_HOST = os.getenv("MONGO_HOST", "nsql-mongodb-1")
+    app.config['MONGO_USER'] = os.getenv('MONGO_USER')
+    app.config['MONGO_PASSWORD'] = os.getenv('MONGO_PASSWORD')    
     app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     app.debug = True 
+    
+    
+
 
     
     mongo.init_app(app)
