@@ -4,9 +4,9 @@ services:
     build: .
     container_name: flask
     ports:
-      - "5000:5000"
+      - "5001:5001"
     volumes:
-      - ./code:/code
+      - ./app:/app
     restart: unless-stopped
     depends_on:
       - mongodb
