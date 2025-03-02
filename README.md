@@ -38,7 +38,8 @@ MONGO_PASSWORD=<your_password>
 ### Spuštění pomocí Docker Compose
 
 1. Ujistěte se, že v kořenovém adresáři máte soubory `Dockerfile` a `docker-compose.yml`.
-2. Spusťte sestavení a nasazení kontejnerů příkazem:
+2. V Dockerfile si upravte `WORKDIR` na adresář složky ve které se projekt bude nacházet.
+3. Spusťte sestavení a nasazení kontejnerů příkazem:
 
 ```sh
 docker-compose up -d --build
@@ -50,7 +51,7 @@ docker-compose up -d --build
 docker ps
 ```
 
-Pokud je vše správně nastavené, aplikace poběží na **http://localhost:5000**.
+Pokud je vše správně nastavené, aplikace poběží na **http://127.0.0.1:5000**.
 
 ---
 
@@ -78,15 +79,19 @@ Pokud je vše správně nastavené, aplikace poběží na **http://localhost:500
 
 ```
 .
-├── Dockerfile
-├── docker-compose.yml
-├── .env
-├── .env.example
-├── requirements.txt
-├── README.md
-├── code/
-│   ├── app.py
-│   └── ... další soubory aplikace
+NoSQL/
+│── app/
+│   ├── Staic/
+│   ├── Templates/
+│   ├── __init__.py  
+│   ├── forms.py
+│   ├── models.py
+│   ├── routes.py
+│   ├── run.py
+│── requirements.txt
+│── Dockerfile
+│── docker-compose.yml
+│── .env
 ```
 
 ---
