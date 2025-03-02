@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="article-container">
+    <div class="article-head">
+        <h1 class="article-title">{{ article.title }}</h1>
+        <div class="article-actions">
+            {% if current_user.id == article.author_id %}
+            <!-- Edit Article Button -->
+            <a href="{{ url_for('main.edit_article', article_id=article['_id']|string) }}" class="btn edit-btn">Edit</a>
+            
+            <!-- Delete Article Form -->
+            <form action="{{ url_for('main.delete_article', article_id=article['_id']|string) }}" method="post" style="display:inline;">
+                <button type="submit" class="btn delete-btn">Delete Article</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="article-content">
+        <p>{{ article.content }}</p>
+    </div>
+
+    <h2>Comments</h2>
+    <ul class="comments-list">
+        {% for comment in article.comments %}
+        <li class="comment-item">
+            <p>{{ comment.content }} - by <strong>{{ comment.author_name }}</strong></p>
+            {% if comment.author_id == current_user.id %}
+                <form action="{{ url_for('main.delete_comment', article_id=article['_id']|string, comment_id=comment['_id']|string) }}" method="post">
+                    <button type="submit" class="btn delete-btn">Delete</button>
+                </form>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form action="{{ url_for('main.comment', article_id=article['_id']|string ) }}" method="post" class="comment-form">
+        <textarea name="content" required placeholder="Write your comment here..."></textarea>
+        <button type="submit" class="btn submit-btn">Add Comment</button>
+    </form>
+</div>
+{% endblock %}

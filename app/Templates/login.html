@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="margin:10px 10px;">Login</h1>
+
+<form action="{{ url_for('main.login') }}" method="post" style="margin:0px 10px;">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.email.label }}<br>
+        {{ form.email(size=32) }}<br>
+    </div>
+    <div>
+        {{ form.password.label }}<br>
+        {{ form.password(size=32) }}<br>
+    </div>
+    <div>
+        {{ form.remember.label }} {{ form.remember() }}<br>
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
+</form>
+{% endblock %}

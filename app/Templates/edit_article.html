@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit Article</h1>
+
+<form action="{{ url_for('main.edit_article', article_id=article['_id']|string) }}" method="post">
+    <label for="title">Title</label><br>
+    <input type="text" name="title" id="title" value="{{ article.title }}" required>
+    <br>
+    <label for="content">Content</label>
+    <textarea name="content" id="content" required>{{ article.content }}</textarea>
+    
+    <button type="submit">Update Article</button>
+</form>
+
+<a href="{{ url_for('main.article', article_id=article['_id']|string) }}">Back to Article</a>
+{% endblock %}
